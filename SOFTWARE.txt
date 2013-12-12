@@ -1,0 +1,11 @@
+Arduino Windows ZIP:
+http://downloads.arduino.cc/arduino-1.5.5-windows.zip
+
+Arduino:
+http://arduino.cc/en/Main/Software
+
+OpenSCAD
+http://www.openscad.org/downloads.html
+
+STLVivew
+http://www.freestlview.com/
