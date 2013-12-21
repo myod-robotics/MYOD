@@ -1,42 +1,45 @@
 #include <Servo.h>
 
-
 /* PROPERTIES */
-#define N 16//Cantidad de servos (Max 48)
-#define OFFSET 15 //Servos conectados consecutivamente a partir del OFFSET
+#define N 24 //Cantidad de servos (Max 48)
+#define INTERVALTIME 10.0 //Tiempo en ms para calcular el movimiento relativo 
+//Ejemplo: para N=24 ==> INTERVALTIME recomendado 10.0-20.0 ||| tiempo en minimo en mover 24 servos 2 o 3 ms)
 
 /* GLOBAL VARIABLE */
 Servo servoList[N]; //Listado de servos
-int *oldPosition; //Posicion actual 
-
+int servoPins[] = {2,3,4,5,6,7,8,9,10,11,12,13,22,23,24,25,26,27,28,29,30,31,32,33}; //Listado de los N pins
+int oldPosition[N]; //Posicion actual 
 
 //**** EXAMPLE INSTRUCTION *****//
-int t = 1000;
-int oldPosition_test[] = {10,10,180,12,23,34,45,67,12,23,10,10,180,12,23,34,45,67,12,23};
-int newPosition_test[] = {90,180,55,98,76,43,54,26,87,43,90,180,55,98,76,43,54,76,87,43};
-
-//int oldPosition_test[] = {10,10,180,12,23,34,45,67,12,23,10,10,180,12,23,34,45,67,12,23,90,180,55,98,76,43,54,26,87,43,90,180,55,98,76,43,54,76,87,43,54,76,87,43,54,76,87,43};
-//int newPosition_test[] = {90,180,55,98,76,43,54,26,87,43,90,180,55,98,76,43,54,76,87,43,90,180,55,98,76,43,54,26,87,43,90,180,55,98,76,43,54,76,87,43,54,76,87,43,54,76,87,43};
+int t = 500;
+int oldPosition_test[] = {20,50,80,90,20,50,80,90,20,50,80,90,20,50,80,90,20,50,80,90,20,50,80,90};
+int newPosition_test[] = {160,140,125,112,160,140,125,112,160,140,125,112,160,140,125,112,160,140,125,112,160,140,125,112};
 
 void setup(){
+   Serial.begin(9600);
+   //Serial.println("HELLO WORLD");   
+   
+   initServos();   
+}
 
+void loop(){  
+//unsigned long tmp = millis();
+   moveNServos(t, newPosition_test);
+//Serial.println(millis()-tmp);
+   delay(300);
+   moveNServos(t, oldPosition_test);
+   delay(300);    
+}
+
+void initServos(){
   //Para todos los servos
   for(int i=0;i<N;i++){
       //atach servos
-      servoList[i].attach(i+OFFSET);	
+      servoList[i].attach(servoPins[i]);
       //move initial position
       servoList[i].write(oldPosition_test[i]);
       oldPosition[i] = oldPosition_test[i];
   }
-}
-
-void loop(){
-  
-   moveNServos(t, newPosition_test);
-   delay(1000);
-   moveNServos(t, oldPosition_test);
-   delay(1000);  
-  
 }
 
 void moveNServos(int time, int newPosition[]){
@@ -48,30 +51,37 @@ void moveNServos(int time, int newPosition[]){
   }
   
   //tiempo para calcular la duracion exacta del ciclo
-  int final_time =  millis() + time; //tiempo de referencia final;
-   
-  int iteration = 1; //para saber en que iteracion nos encontramos
-  while(millis() < final_time){ 
-	int interval_time = millis()+20;  //referencia de tiempo en un subciclo en ms
-	int oneTime=0;
-	while(millis()<interval_time){	  
-		//solo lo hace en la primera iteracion
-		if(oneTime<1){ 
-			//enviar la posicion a conseguir en este subciclo 
-			for(int i=0;i<N;i++){
-				servoList[i].write(oldPosition[i] + (iteration * increment[i]));			
-			}			
-			iteration++;
-			oneTime++;
+  unsigned long final_time =  millis() + time; //tiempo de referencia final;
+  
+  int iteration = 1; //para saber en que iteracion nos encontramos  
+  while(millis() < final_time){  
+      unsigned long interval_time = millis()+INTERVALTIME;  //referencia de tiempo en un subciclo en ms
+      
+      int oneTime=0;      
+      while(millis()<interval_time){	  
+          //solo lo hace en la primera iteracion
+          if(oneTime<1){ 
+//unsigned long tmp = millis();
+              //enviar la posicion a conseguir en este subciclo 
+              for(int i=0;i<N;i++){
+                  servoList[i].write(oldPosition[i] + (iteration * increment[i]));
+              }			
+              iteration++;
+              oneTime++;
+//Serial.println(millis()-tmp);
+          }
 
-		}
-	}     
+      }     
   }   
-  oldPosition = newPosition;  
+  //convertir las nuevas posiciones en las actuales
+  for(int i=0;i<N;i++){
+	oldPosition[i] = newPosition[i];
+  }    
 }
 
 float getGradeInrcrement(int time, int posI, int posF){  
 	// numeroIncrementos = time/20.0 --> cantidad de incrementos (escala 20ms)
+	// numeroIncrementos = time/INTERVALTIME --> cantidad de incrementos (escala INTERVALTIME ms)
 	// varPosicion/numeroIncrementos --> variacion de posicion en cada incremento
-	return (posF-posI)/(time/20.0);   
+	return (posF-posI)/(time/INTERVALTIME);   
 }
