@@ -1,3 +1,15 @@
+/*
+ *Autor:Roberto Herrera Esteban
+ *Fecha de creación: 2/2/14
+ *Última modificación: 12/2/14
+ *
+ *Proyecto MYOD, Asrob, UC3M
+ *
+ *En esta libreria se incluyen las funciones que harán posible
+ *la movilidad de un robot humanoide imprimible de bajo coste
+ *
+ *
+ */
 #ifndef MYOD
 #define MYOD
 
