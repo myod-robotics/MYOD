@@ -34,21 +34,42 @@ float Robot::getGradeInrcrement(int time, int posI, int posF){
 }
 
 void Robot::moveOne(int motor, int pos){
+     pos=this->compare(pos);
      _position[motor]= pos;
      _motors[motor].write(_position[motor] + _trim[motor] );
 
 }
+
+void Robot::moveOneTime(int time, int motor, int pos){
+    int newpos[Nmotor];
+    for(int i=0;i<Nmotor;i++){
+        newpos[i]=this->readPos(_position[i]);
+    }
+    pos=this->compare(pos);
+    newpos[motor]= pos;
+    this->move(time,newpos);
+    }
+
 void Robot::moveOffs(int motor, int var){
-    _position[motor]=_position[motor]+var;
+    _position[motor] = this->compare(_position[motor]+var);
     this->moveOne(motor,_position[motor]);
 }
 
+void Robot::moveOffsTime(int time, int motor, int inc){
+    int newpos[Nmotor];
+    for(int i=0;i<Nmotor;i++){
+        newpos[i]=this->readPos(_position[i]);
+    }
+    newpos[motor]=this->compare(newpos[motor]+inc);
+    this->move(time,newpos);
+}
 void Robot::move(int time, int newPosition[Nmotor]){
 
   //calcula el incremento de posicion en funcion del tiempo
   float increment[Nmotor];
   for(int i=0;i<Nmotor;i++){
-    increment[i] = getGradeInrcrement(time,_position[i], newPosition[i]);
+        newPosition[i]= this->compare(newPosition[i]);
+        increment[i] = getGradeInrcrement(time,_position[i], newPosition[i]);
   }
 
   //tiempo para calcular la duracion exacta del ciclo
@@ -87,4 +108,13 @@ void Robot::trimming(int trim[Nmotor]){
 }
 int Robot::readPos(int motor){
     return _position[motor];
+}
+
+int Robot::compare(int pos){
+    if(pos>MAXANG){
+        pos=MAXANG;
+    }else if (pos<MINANG) {
+        pos=MINANG;
+    }
+    return pos;
 }
