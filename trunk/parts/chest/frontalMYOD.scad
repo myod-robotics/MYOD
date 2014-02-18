@@ -1,11 +1,12 @@
 //Arduino Mega Board: 54x102x10
 
 
-module pasantes(){
-	translate([29,46,-1])cylinder(r=2,h=70);
-	translate([29,-46,-1])cylinder(r=2,h=70);
-	translate([-19,46,-1])cylinder(r=2,h=70);
-	translate([-19,-46,-1])cylinder(r=2,h=70);
+module pasantes(y){
+y=y-10;
+	translate([30,y/2,-1])cylinder(r=2,h=70);
+	translate([30,-y/2,-1])cylinder(r=2,h=70);
+	translate([-19,y/2,-1])cylinder(r=2,h=70);
+	translate([-19,-y/2,-1])cylinder(r=2,h=70);
 }
 
 module servo(z){
@@ -33,32 +34,32 @@ module tuerca(){ //M3
 }
 
 xmax=67;
-ymax=102;
+ymax=122;
 R=8;
 difference(){
 	union(){
-		translate([-64/2+R,-102/2,0])cube([xmax-R,ymax,28]);
+		translate([-64/2+R,-ymax/2,0])cube([xmax-R,ymax,28]);
 		translate([-64/2+20,-20,0])cube([47,40,35]);		
 	}
-	translate([-20,-25,2])cube([51,50,34]); //cajeado
+	translate([-20,-30,2])cube([51,60,34]); //cajeado
 
 	difference(){
 		translate([-15,50,6.01])rotate([90,0,0])servo(100);
-		translate([30.8,0,6])cube([10,49,70],center=true);
+		translate([30.8,0,6])cube([10,59.9,70],center=true);
 	}
 	
 //Huecos para tuercas
 	translate([-18,28,12])rotate([90,0,0]){
-		rotate([0,0,30])tuerca();
-		translate([48,0,0])rotate([0,0,30])tuerca();
-		translate([48,10,0])rotate([0,0,30])tuerca();
-		translate([0,10,0])rotate([0,0,30])tuerca();
+		translate([0,0,-5.5])rotate([0,0,30])tuerca();
+		translate([48,0,-5.5])rotate([0,0,30])tuerca();
+		translate([48,10,-5.5])rotate([0,0,30])tuerca();
+		translate([0,10,-5.5])rotate([0,0,30])tuerca();
 	}
 	mirror([0,1,0])translate([-18,28,12])rotate([90,0,0]){
-		rotate([0,0,30])tuerca();
-		translate([48,0,0])rotate([0,0,30])tuerca();
-		translate([48,10,0])rotate([0,0,30])tuerca();
-		translate([0,10,0])rotate([0,0,30])tuerca();
+		translate([0,0,-5.5])rotate([0,0,30])tuerca();
+		translate([48,0,-5.5])rotate([0,0,30])tuerca();
+		translate([48,10,-5.5])rotate([0,0,30])tuerca();
+		translate([0,10,-5.5])rotate([0,0,30])tuerca();
 	}
 
 
@@ -69,18 +70,18 @@ difference(){
 	translate([40,-7,6])rotate([0,-90,0])miniservo(30);
 
 //Cruceta del servo	
-	translate([-50,0,17])rotate([0,90,0])cylinder(r=11.5/2,h=40);
-	translate([-50,+13,17])rotate([0,90,0])cylinder(r=2,h=40);
-	translate([-50,-13,17])rotate([0,90,0])cylinder(r=2,h=40);
-	translate([-62.5,+13,17])rotate([0,90,0])cylinder(r=3,h=40,$fn=6);
-	translate([-62.5,-13,17])rotate([0,90,0])cylinder(r=3,h=40,$fn=6);
+	translate([-50,0,17])rotate([0,90,0])cylinder(r=5.5,h=40);
+	translate([-50,+15,17])rotate([0,90,0])cylinder(r=2,h=40);
+	translate([-50,-15,17])rotate([0,90,0])cylinder(r=2,h=40);
+	translate([-62.5,+15,17])rotate([0,90,0])cylinder(r=3,h=40,$fn=6);
+	translate([-62.5,-15,17])rotate([0,90,0])cylinder(r=3,h=40,$fn=6);
 
 
-	translate([-32,51-13,6])cube([69,40,23]);
-	mirror([0,1,0])	translate([-32,51-13,6])cube([69,40,23]);
+	translate([-32,ymax/2-13,6])cube([69,40,23]);
+	mirror([0,1,0])translate([-32,ymax/2-13,6])cube([69,40,23]);
 
 //Agujeros chasis
-	pasantes();
+	pasantes(ymax);
 
 
 
