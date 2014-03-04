@@ -1,5 +1,5 @@
 ﻿/*
- *Autor:Roberto Herrera Esteban . . 
+ *Autor:Roberto Herrera Esteban
  *Fecha de creación: 2/2/14
  *Última modificación: 12/2/14
  *
