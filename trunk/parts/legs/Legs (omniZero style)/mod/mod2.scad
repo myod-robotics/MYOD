@@ -1,7 +1,3 @@
-module pieza(){
-	import("upper left screw arm.stl");
-}
-
 union(){
 	
 	mirror([0,0,0])difference(){
