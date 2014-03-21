@@ -17,7 +17,8 @@ void setup(){
 }
 
 void loop(){
-   delay(30000);
+  //Cambiad este delay
+   delay(1);
   if (1){   
     mov = random(1,nmoves);
     //mov = 1;
