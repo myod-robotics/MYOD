@@ -97,10 +97,11 @@ void Robot::move(int time, int newPosition[Nmotor]){
   }
   //convertir las nuevas posiciones en las actuales
   for(int i=0;i<Nmotor;i++){
-    _position[i] = newPosition[i];
+    setPosition( i,newPosition[i]);
     _motors[i].write(_trim[i] + _position[i]); //Aseguramos la posicion final sin error de propagacion
   }
 }
+
 void Robot::trimming(int trim[Nmotor]){
     for(int i=0;i<Nmotor;i++){
         _trim[i]=trim[i];
@@ -117,4 +118,7 @@ int Robot::compare(int pos){
         pos=MINANG;
     }
     return pos;
+}
+void Robot::setPosition(int n, int pos){
+    _position[n] = pos;    
 }

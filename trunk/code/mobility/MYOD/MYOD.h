@@ -1,4 +1,4 @@
-﻿/*
+/*
  *Autor:Roberto Herrera Esteban
  *Fecha de creación: 2/2/14
  *Última modificación: 12/2/14
@@ -17,7 +17,7 @@
 #include <Servo.h>
 
 
-#define Nmotor 24 //num of motors
+#define Nmotor 22 //num of motors
 
 #define INTERVALTIME 5 //ms
 
@@ -30,6 +30,7 @@ class Robot {
    Servo _motors[Nmotor];
    int _position[Nmotor];
    int _trim[Nmotor];
+   
  public:
    /*Constructor sin trim*/
    Robot();
@@ -58,11 +59,14 @@ class Robot {
    void trimming(int trim[Nmotor]);
    /*Función de inicio*/
    void inititalize(int pos[Nmotor]); //sin hacer
+   
+   void setPosition(int n, int pos);
   private:
    /*Calcula la velocidad de movimiento*/
    float getGradeInrcrement(int time, int posI, int posF);
    /*Evita que el servo llegue a posiciones límite*/
    int compare(int pos);
+   
 };
 
 #endif
