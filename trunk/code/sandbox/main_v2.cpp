@@ -32,7 +32,7 @@ int iter = 0;
 
 
 int main() {
-
+cin.fa
 	string nombre;
 	cout << "Introduze el nombre del archivo a cargar" << endl;
 	cin >> nombre;
