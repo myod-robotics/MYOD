@@ -19,7 +19,7 @@ void setup(){
 void loop(){
   //Cambiad este delay
    delay(1);
-  if (1){   
+  if (0){   
     mov = random(1,nmoves);
     //mov = 1;
     switch (mov) {
