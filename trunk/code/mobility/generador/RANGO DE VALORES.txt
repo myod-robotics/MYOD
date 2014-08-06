@@ -1,0 +1,62 @@
+Tiempo total (milisegundos)-> es el tiempo que tarda el robot en dar un paso derecho y una izquierdo
+
+800-2000 ms recomendado 1200.
+______________________________
+Número de intervalos (número)-> resolución en el que se dividirá el tiempo total.
+
+10-40 --- no generar intervalos con un tiempo menor a 15 milisegundos ni excesivamente elevados
+______________________________
+Longitud de la pierna estidad (milimetros)-> distancia entre el eje superior de la pierna (xLegP) y el inferior(xAnkleP).
+Permite  generar trayectorias con las piernas parcialmente encogidas o en posición erguida.
+
+En posición erguida 166 mm. En el resto es necesario medir.
+______________________________
+Amplitud de movimiento de la cadera (milimetros)-> desplazamiento lateral del robot en el cual permite repartir el peso entre una y otra pierna.
+
+20-35 mm recomendado 25-28 mm dependiendo de los elementos que porte el robot(depende del peso/inercia)
+______________________________
+Distancia entre el pie y el suelo(mm)->distancia máxima que el robot levantará el pie al quedarse a la "pata coja".
+
+8-20 mm. recom 12mm
+______________________________
+Avance de la pierna medidado desde la cadera(mm)->amplitud del movimiento de "patada". Distancia la cual avanza la puntera del pie hacia adelante y atrás respecto a la cadera
+
+10-25mm. recom 15mm
+______________________________
+Giro máximo de la cadera(grados)->torsión del pecho respecto a la cadera en la articulación de la cintura.
+Aporta desestabilidad pero imita al movimiento humano.
+
+0-10 grad. recom 0-5grad.
+______________________________
+Amplitud del brazo hacia adelante y atrás....(grad)->Balanceo de los brazos
+con valores muy grandes se genera desestabilidad.
+
+5-30grad recom 15-20.
+______________________________
+
+
+
+Introduce un nombre para exportar el archivo.-> nombre con el que aparecerá el fichero con la configuración actual en la carpeta exported. Sobreescribe sin preguntar.
+
+
+Nombre de la clase Robot.->En la librería MYOD hay que usar un objeto de la clase robot, ej:
+....
+float f=2,344;
+int a=0;
+Robot myod;
+....
+En este apartado hay que indicar el nombre que le hemos puesto a nuestro objeto para que se puede usar el fichero directamente.
+Por ejemplo, si hemos declarado :
+Robot Pepe;
+Hay que introducir Pepe.
+Así los movimientos aparecerán como: Pepe.move(time,1,2,3,4.....); en nuestro fichero.
+
+
+__________________________________________
+__________________________________________
+__________________________________________
+COMO USAR LOS FICHEROS EXPORTADOS
+En el ejemplo walking_example se muestra como hacerlo.
+Basta con copiar el fichero a la misma carpeta del programa donde se vaya a usar,
+abrir el programa y
+incluir el fichero con sketch->agregar archivo...
