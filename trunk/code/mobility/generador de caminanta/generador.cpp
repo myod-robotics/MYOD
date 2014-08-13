@@ -517,7 +517,7 @@ int calcular(int configuracion, float variacion, int iteracion, int pierna, int 
 
 #ifdef movava
        angulo = calcavance(iteracion,variacion);
-       val = val  + int(round_inf(180.0*atan(angulo*param[avance]/pierna)/PI,0));
+       val = val  + int(round_inf(180.0*asin(angulo*param[avance]/pierna)/PI,0));
        angulo = calcang(iteracion,variacion);
 #endif
        break;
@@ -539,7 +539,7 @@ int calcular(int configuracion, float variacion, int iteracion, int pierna, int 
 
 #ifdef movava
        angulo = calcavance(iteracion,variacion);
-       val = val  + int(round_inf(180.0*atan(angulo*param[avance]/pierna)/PI,0));
+       val = val  + int(round_inf(180.0*asin(angulo*param[avance]/pierna)/PI,0));
        angulo = calcang(iteracion, variacion);
 #endif
        break;
@@ -593,7 +593,7 @@ int calcular(int configuracion, float variacion, int iteracion, int pierna, int 
 #endif
 #ifdef movava
        angulo = calcavance(iteracion,variacion);
-       val = val  + int(round_inf(180.0*atan(angulo*param[avance]/pierna)/PI,0));
+       val = val  + int(round_inf(180.0*asin(angulo*param[avance]/pierna)/PI,0));
        angulo = calcang(iteracion, variacion);
 #endif
        break;
@@ -612,7 +612,7 @@ int calcular(int configuracion, float variacion, int iteracion, int pierna, int 
 #endif
 #ifdef movava
        angulo = calcavance(iteracion,variacion);
-       val = val  + int(round_inf(180.0*atan(angulo*param[avance]/pierna)/PI,0));
+       val = val  + int(round_inf(180.0*asin(angulo*param[avance]/pierna)/PI,0));
        angulo = calcang(iteracion, variacion);
 #endif
        break;
