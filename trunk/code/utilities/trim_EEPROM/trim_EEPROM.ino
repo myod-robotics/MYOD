@@ -82,7 +82,7 @@ void loop(){
         }
       }
       m = atoi(a);
-      if(m <NeckP && motor >=0){
+      if(m <NeckP && m >=0){
         motor=m;
         Serial.print("Trim de ");
         showconfig(motor);

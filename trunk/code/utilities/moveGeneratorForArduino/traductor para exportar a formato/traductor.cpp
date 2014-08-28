@@ -3,7 +3,7 @@
 
 Author: Roberto Herrera Esteban
 Date: 18/03/14
-Last change: 18/03/14
+Last change: 28/08/14
 
 
 
@@ -17,6 +17,8 @@ Last change: 18/03/14
 
 #define size 126
 #define sizew 8
+
+//#define debug
 using namespace std;
 //using namespace space;
 
@@ -48,10 +50,14 @@ int main() {
              if (dato[di] == ','){
                 nservos++;
              }
-             //cout << dato[di];
+             #ifdef debug
+             cout << dato[di];
+             #endif
              di++;
           }while(dato[di]!= '\0');
-          //cout << di << endl;
+          #ifdef debug
+          cout << di << endl;
+          #endif
           di=0;
        }
 	nservos= nservos/nlineas;
@@ -64,47 +70,63 @@ int main() {
        for(int j=0;j<nservos+1;j++){
           for(int k=0;k<sizew;k++){
                   vector[i][j][k]=' ';
+                  #ifdef debug
                   //cout<< i << j  << "-" << k << endl;
+                  #endif
           }
        }
     }
-
+ // Guardar datos en el programa
 	importar.seekg(0,ios::beg);
 	importar.clear();
 	
 	di=0;
 	contador=0;
 	linea=0;
+	#ifdef debug
+	cout << "Guardando datos" << endl;
+	#endif
 	while(importar.eof()!=1){
        importar.getline(dato,size,'\n');
        
        do{
           if(dato[di]!=','){
-            if((dato[di]=='{') || (dato[di]=='}')){
-                  
+            if((dato[di]=='{')){
+            }else if(dato[di]=='}'){
+               vector[linea][contador][iter]='\0';
             }else{
                vector[linea][contador][iter]=dato[di];
-              // //cout << dato[di];
-               //cout << vector[linea][contador][iter];
+               #ifdef debug
+               //cout << dato[di];
+               cout << vector[linea][contador][iter];
+               #endif
                iter++; 
             }
           }else {
              vector[linea][contador][iter]='\0'; 
              contador++;
              iter=0;
-             //cout << " ";
+             #ifdef debug
+             cout << " ";
+             #endif
           }
-          // //cout << di;
+          #ifdef debug
+          //cout << di;
+          #endif
           di++;
 
        }while(dato[di]!='\0');
-       //cout << endl;
-      // //cout << di << endl;                      
+       #ifdef debug
+       cout << endl;
+       cout << di << endl;            
+       #endif          
        di=0;
        contador=0;
        linea++; 
     }
-    //cout << "---------------" <<endl;
+    #ifdef debug
+    cout << "---------------" <<endl;
+    #endif
     
     linea=0;
 	iter=0;
@@ -112,18 +134,26 @@ int main() {
 	contador=0;
 	do{
        do{
-               ////cout <<"contador->" << contador << " ";
+               #ifdef debug
+               //cout <<"contador->" << contador << " ";
+               #endif
           while(vector[linea][contador][iter]!='\0'){
-             //cout << vector[linea][contador][iter];
+                                                     #ifdef debug
+             cout << vector[linea][contador][iter];
+             #endif
              iter++;
           }
           iter=0;
           contador++;
-          //cout << " ";
+          #ifdef debug
+          cout << " ";
+          #endif
        }while(contador<nservos+1);
        contador=0;
        linea++;
-       //cout << endl;
+       #ifdef debug
+       cout << endl;
+       #endif
     }while(linea<nlineas);
     linea=0;
 	di=0;
@@ -135,13 +165,17 @@ int main() {
 	int i=0;
 	   while(vector[x][nservos][i]!='\0'){
           if(vector[x][nservos][i]==' '){
-                            vector[x][nservos][i]='\0';                                          
-	      //cout << vector[x][nservos][i] ;
+                            vector[x][nservos][i]='\0'; 
+                            #ifdef debug                                         
+	      cout << vector[x][nservos][i] ;
+	      #endif
        }
 	   i++;
        }
     }
-////cout<< endl;
+    #ifdef debug
+    cout<< endl;
+    #endif
 	
 	
 	
@@ -153,9 +187,10 @@ int main() {
 		cout<< "Nombre del objeto de la case Robot" << endl;
 		cin >> robot;
 		
-		////cout<< "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" ; 
-		//////cout<< endl << endl << " pene" << vtime[0][0] << endl << endl;
-		string nombr_exp = nombr_e + "_exp.h";
+		#ifdef debug
+		cout<< "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" ; 
+		#endif
+		string nombr_exp = nombr_e + ".h";
 		char *nombreExp = strdup(nombr_exp.c_str());
         ofstream exportar;
         exportar.open(nombreExp,ios::out|ios::trunc);
@@ -172,12 +207,9 @@ int main() {
            exportar << toupper(nombr_e[i],loc);
         }
         exportar <<  "_H" << endl << endl;
-		
-		exportar << "extern Robot " << robot << ";" << endl;
-		
-		
+		//robot
+		exportar << "extern Robot " << robot << endl << endl;
 		//nombre de la funcion
-		
 		exportar << "void " << nombr_e << "(){" << endl << endl;
 		//declaracion
 		for(int i= 0; i < nlineas;i++){
@@ -185,8 +217,9 @@ int main() {
 			exportar << "int time_" << i+1 << " = " ;
 			int x=0;
 			while(vector[i][0][x]!='\0'){
-                    
-                    ////cout<< vector[i][0][x];
+                    #ifdef debug
+                    cout<< vector[i][0][x];
+                    #endif
 				exportar << vector[i][0][x];
 				x++;
 			}
@@ -219,26 +252,27 @@ int main() {
 			exportar << robot << ".move(time_" << i+1 << ", vector_" << i+1 << ");" << endl;
 		}
 		//fin
-		exportar << endl << "}" << endl << endl;
+		exportar << endl << "}" <<endl;
+		
 		exportar << "#endif";
 		
 		exportar.close();
 		
-		////cout<< "Exportacion finalizada" << endl << endl;
-		
+		cout<< "Exportacion finalizada" << endl << endl;
+        system("PAUSE");
 		
 		
 
 			
 	
 	}else{
-		////cout<< "Fallo al abrir el archivo" << endl << endl;
+		cout<< "Fallo al abrir el archivo" << endl << endl;
+        system("PAUSE");
 	}
 	
 
 return 0;
 }
-
 
 
 
