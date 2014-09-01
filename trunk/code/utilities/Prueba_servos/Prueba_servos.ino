@@ -1,9 +1,6 @@
-// Sweep
-// by BARRAGAN <http://barraganstudio.com> 
-// This example code is in the public domain.
-
-
 #include <Servo.h> 
+
+#define PIN_SERVO 20
  
 Servo myservo;  // create servo object to control a servo 
                 // a maximum of eight servo objects can be created 
@@ -14,7 +11,7 @@ void setup()
 {
  Serial.begin(9600); 
   
-  myservo.attach(52);  // attaches the servo on pin 9 to the servo object 
+  myservo.attach(PIN_SERVO);  // attaches the servo on pin 9 to the servo object 
   myservo.write(90);
 } 
 
