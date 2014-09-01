@@ -16,9 +16,9 @@
 #include <Arduino.h>
 #include <Servo.h>
 
-
-#define Nmotor 22 //num of motors
-
+#ifndef Nmotor
+#define Nmotor 25 //num of motors std
+#endif
 #define INTERVALTIME 5 //ms
 
 #define MAXANG 170 //grad
@@ -49,7 +49,7 @@ class Robot {
    void moveOneTime(int time,int motor, int pos);
    /*Mueve todos los servos a una posición relativa de la actual en un tiempo determinado*/
    void moveOffs(int time, int offsPos[Nmotor]);
-   /*Mueve un único servo a una posición relativa a máxima verlocidad*/
+   /*Mueve un unico servo a una posición relativa a máxima verlocidad*/
    void moveOffsOne(int motor, int inc);
    /*Mueve un único servo a una posición relativa en un tiempo determinado*/
    void moveOffsTime(int time,int motor, int inc);

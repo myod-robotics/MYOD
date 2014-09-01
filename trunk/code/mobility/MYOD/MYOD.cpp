@@ -52,8 +52,8 @@ void Robot::moveOneTime(int time, int motor, int pos){
 void Robot::moveOffs(int time, int offsPos[Nmotor]){
     for(int i=0; i<Nmotor;i++){
         _position[i]=this->compare(_position[i]+offsPos[i]);
-        this->move(time,_position);
     }
+    this->move(time,_position);
 }
 
 
