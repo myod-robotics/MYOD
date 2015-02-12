@@ -1,0 +1,32 @@
+TAREAS PENDIENTES
+============================================================================================================
+
+DISEÑO MECÁNICO:
+	- Piernas basadas en paralelogramos. (Manu)
+	- Piernas basadas en rotulas. (Javi)
+	- Cálculo dinámico.
+	- Diseñar unas pinzas con microservos.
+	- Diseñar cabezaS pan-tilt (2 dof), para diferentes sensores (camara, ultrasonidos, infrarrojos).
+
+ELECTRÓNICA Y BAJO NIVEL:
+	- Recopilar sensores y documentación útiles para el MYOD (de distancia, contacto, imus...).
+	- Buscar/construir placas para controlar servos.
+	- Investigar uso de Attinys (attiny85) e I2C.
+	- Investigar uso de pics.
+	- Realizar librerías para controlar todo tipo de sensores (una librería para controlarlos a todos).
+
+PROGRAMACIÓN EN SBC:
+	- Buscar SBCs diferentes.
+	- Investigar la mejor forma de comunicar el sbc con la placa de control d ebajo nivel.
+	- Realizar librerías multiplataforma (Beagle, Raspberry, Odroid...) para controlar el puerto serie.
+	- Realizar librerías multiplataforma (Beagle, Raspberry, Odroid...) para controlar el puerto I2C.
+	- Investigar el uso de YARP.
+	- Algoritmos de visión con OpenCV
+	- Desarrollar comportamientos varios
+	- Comunicación con Electrónica para sensorizar el robot adecuadamente
+	- Buscar aplicaciones chulas de Linux (texttospeech... )
+
+ 
+
+ 
+
