@@ -1,0 +1,32 @@
+Conversión de Solid Edge a STEP
+Fecha: lunes,febrero 16,2015 06 :33
+Archivo fuente: D:\Manuel\Robótica\ASROB\Humanoides\MYOD\MYOD Repositorio\MYOD\parts\misc\servo models\turnigy_1269HV\Turnigy 1269HV.stp
+Autor: Desconocido
+Organización: Desconocido
+Sistema de origen: Desconocido
+
+Equipo:
+Procesador: Intel(R) Core(TM)2 Duo CPU     T9550  @ 2.66GHz
+Sistema operativo: Windows 7 Professional Service Pack 1
+Memoria instalada: 3.96 GB
+
+Información del software
+Versión de Parasolid: 26.0.169
+Versión de PSBodyShop: 16.1.150
+Versión del traductor: 16.42.0
+Versión de Solid Edge: 106.00.02.05
+
+Opciones de exportación de STEP
+Exportar AP214: Desactivado
+Exportar superficies de construcción: Desactivado
+Exportar sólidos de construcción: Desactivado
+Exportar curvas de construcción: Desactivado
+Exportar sólo piezas mostradas: Desactivado
+Convertir cuerpos sólidos en cuerpos sólidos de clase VI: Activado
+Exportar unidades: Milímetros
+Formato de conjunto de artículo asignado: Activado
+
+Fase 1 de 1 Convirtiendo Parasolid a tipos de datos externos...
+Proceso de conversión completado
+Tiempo requerido para convertir:00 : 00 : 00
+Grabando archivo convertido...
