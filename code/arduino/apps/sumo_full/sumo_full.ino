@@ -13,12 +13,13 @@
 #include "pasolateralizq.h"
 #include "pasolateralder.h"
 #include "cintura.h"
+#include "suicida.h"
 
 
-#define echoPinD 49
-#define trigPinD 48
-#define echoPinI 47
-#define trigPinI 46
+#define echoPinD 18
+#define trigPinD 19
+#define echoPinI 11
+#define trigPinI 10
 
 
 #define avanzamin 23
@@ -53,6 +54,7 @@ Ultrasonic ultrasonicI(trigPinI, echoPinI); // (Trig PIN,Echo PIN)
 
 void setup() {
   Serial.begin(9600);
+  Serial.println("Start");
 
   for (int i = 0 ; i < NeckP; i++) {
     b1 = EEPROM.read(i);
@@ -62,14 +64,24 @@ void setup() {
   myod.trimming(trim);
   myod.attach(port);
   myod.move(300, vector_90);
-  delay(4500);
+  while(millis()<5000){};
+  Serial.println("GO!");
+  
   prueba();
   punetazoder();
+  randomSeed(analogRead(0));
 
 }
 
 void loop() {
   while (1) {
+    if((int)random(7)==1){ //random
+      Serial.println("Allahu Akbar!!!!!!!"); //SUICIDIO
+      suicida();
+      myod.detach();
+      while(1){};
+    }
+    
 
     //agacharse (defensa)
     Serial.println("----------");

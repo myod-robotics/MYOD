@@ -14,8 +14,8 @@
 #define LSHOULDERP 25//24
 #define RELBOWP 44
 #define LELBOWP 23
-#define RHAND 45
-#define LHAND 22
+#define RHAND 45 //-1
+#define LHAND 22 //-1
 #define HIPY 5
 #define RLEGY 3
 #define LLEGY 7
@@ -33,4 +33,5 @@
 #define LANKLER 28
 
 #endif
+
 

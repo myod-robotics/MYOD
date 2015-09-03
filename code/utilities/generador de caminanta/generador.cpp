@@ -27,8 +27,8 @@ using namespace std;
 
 #define posreposo 90
 //No comprobadas
-#define posbrazoizq 165
-#define posbrazoder 15
+#define posbrazoizq 15
+#define posbrazoder 165
 
 #define maxservos 54
 #define deshorizontal 6 //Distancia entre los planos de los servos roll de la cadera y tobillo
@@ -43,7 +43,7 @@ using namespace std;
 
 
 #define expo 7.5         //exponenestes del seno
-#define desCDG -0.0475        //inc angular  / Desplazamiento horizontal para compensar el centro de gravedad + o -
+#define desCDG 0.0475        //inc angular  / Desplazamiento horizontal para compensar el centro de gravedad + o -   -0.0475
 
 #define movcad       //movimiento de cadera
 #define movrod       //movimiento de rodilla
